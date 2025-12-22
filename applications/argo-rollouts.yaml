@@ -20,8 +20,14 @@ spec:
       project: default
       source:
         repoURL: https://argoproj.github.io/argo-helm
-        targetRevision: v2.4.9
-        path: argo-rollouts
+        targetRevision: 2.40.5
+        chart: argo-rollouts
       destination:
         name: {{ .server }}
         namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
