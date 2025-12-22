@@ -24,7 +24,7 @@ spec:
         targetRevision: main
         ref: values
       destination:
-        server: {{.server}}
+        server: {{ .server }}
         namespace: argo-rollouts
       syncPolicy:
         automated:
