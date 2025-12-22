@@ -1,6 +1,6 @@
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
   name: argo-rollouts
 spec:
@@ -15,8 +15,8 @@ spec:
       project: "default"
       sources:
       - repoURL: https://argoproj.github.io/argo-helm
-        targetRevision: 2.40.4
-        chart: argo-rollouts
+        targetRevision: 2.40.5
+        chart: argo/argo-rollouts
         helm:
           valueFiles:
           - $values/charts/argo-rollouts/values.yaml
