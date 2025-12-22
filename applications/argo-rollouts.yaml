@@ -6,8 +6,8 @@ metadata:
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
-  generators:
-  - clusters: {}
+  # generators:
+  # - clusters: {}
   template:
     metadata:
       name: 'argo-rollouts'
@@ -24,7 +24,7 @@ spec:
         targetRevision: main
         ref: values
       destination:
-        server: {{ .server }}
+        server: https://kubernetes.default.svc
         namespace: argo-rollouts
       syncPolicy:
         automated:
