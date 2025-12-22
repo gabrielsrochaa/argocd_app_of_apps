@@ -10,7 +10,7 @@ spec:
         selector:
           matchLabels:
             kubernetes.io/instance: "*"
-  cluster_name: {{ name }}
+  cluster_name: {{ .name }}
   template:
     metadata:
       name: "argo-rollouts-{{ cluster_name }}"
@@ -22,5 +22,5 @@ spec:
         repoURL: https://argoproj.github.io/argo-helm
         targetRevision: v2.4.9
       destination:
-        name: {{   cluster_name }}
+        name: {{ .server }}
         namespace: default
