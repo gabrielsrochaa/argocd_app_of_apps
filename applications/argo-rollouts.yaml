@@ -21,6 +21,7 @@ spec:
       source:
         repoURL: https://argoproj.github.io/argo-helm
         targetRevision: v2.4.9
+        path: argo-rollouts
       destination:
         name: {{ .server }}
         namespace: default
