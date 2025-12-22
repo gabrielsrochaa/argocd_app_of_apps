@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/gabrielsrochaa/argocd_app_of_apps
     targetRevision: HEAD
-    path: ./applications
+    path: applications
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
