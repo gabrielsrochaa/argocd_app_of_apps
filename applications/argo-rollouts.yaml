@@ -10,7 +10,7 @@ spec:
   - clusters: {}
   template:
     metadata:
-      name: 'argo-rollouts-{{ .name }}'
+      name: 'argo-rollouts'
     spec:
       project: "default"
       sources:
