@@ -1,3 +1,4 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -14,7 +15,7 @@ spec:
       project: "default"
       source:
         repoURL: https://argoproj.github.io/argo-helm
-        targetRevision: 2.40.5
+        targetRevision: 2.40.4
         chart: argo-rollouts
       destination:
         server: {{ .server }}

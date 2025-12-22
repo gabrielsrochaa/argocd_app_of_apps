@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/gabrielsrochaa/argocd_app_of_apps
+    repoURL: https://github.com/gabrielsrochaa/argocd_app_of_apps.git
     targetRevision: HEAD
     path: applications
   destination:
