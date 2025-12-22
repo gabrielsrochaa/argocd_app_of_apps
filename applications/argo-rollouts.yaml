@@ -10,12 +10,9 @@ spec:
         selector:
           matchLabels:
             kubernetes.io/instance: "*"
-  cluster_name: {{ .name }}
   template:
     metadata:
-      name: "argo-rollouts-{{ cluster_name }}"
-      labels:
-        argocd.argoproj.io/managed-by: argocd-operator
+      name: "argo-rollouts-{{ .name }}"
     spec:
       project: default
       source:
