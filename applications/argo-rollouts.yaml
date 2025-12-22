@@ -13,10 +13,16 @@ spec:
       name: 'argo-rollouts-{{ .name }}'
     spec:
       project: "default"
-      source:
-        repoURL: https://argoproj.github.io/argo-helm
+      sources:
+      - repoURL: https://argoproj.github.io/argo-helm
         targetRevision: 2.40.4
         chart: argo-rollouts
+        helm:
+          valueFiles:
+          - $values/charts/argo-rollouts/values.yaml
+      - repoURL: https://github.dev/gabrielsrochaa/argocd_app_of_apps.git
+        targetRevision: main
+        ref: values
       destination:
         server: {{ .server }}
         namespace: argo-rollouts
