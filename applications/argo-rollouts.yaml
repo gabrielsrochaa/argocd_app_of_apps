@@ -1,13 +1,13 @@
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
   name: argo-rollouts
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
-  # generators:
-  # - clusters: {}
+  generators:
+  - clusters: {}
   template:
     metadata:
       name: 'argo-rollouts'
@@ -24,7 +24,7 @@ spec:
         targetRevision: main
         ref: values
       destination:
-        server: https://kubernetes.default.svc
+        server: {{.server}}
         namespace: argo-rollouts
       syncPolicy:
         automated:
