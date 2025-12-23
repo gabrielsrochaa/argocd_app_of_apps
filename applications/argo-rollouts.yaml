@@ -1,13 +1,16 @@
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
   name: argo-rollouts
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-  - clusters: {}
+  - clusters:
+      selector:
+        matchLabels:
+          env: dev
   template:
     metadata:
       name: 'argo-rollouts'
@@ -20,7 +23,7 @@ spec:
         helm:
           valueFiles:
           - $values/charts/argo-rollouts/values.yaml
-      - repoURL: https://github.dev/gabrielsrochaa/argocd_app_of_apps.git
+      - repoURL: https://github.com/gabrielsrochaa/argocd_app_of_apps.git
         targetRevision: main
         ref: values
       destination:
