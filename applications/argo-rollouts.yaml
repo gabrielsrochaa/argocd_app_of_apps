@@ -18,7 +18,7 @@ spec:
     spec:
       project: "default"
       source:
-        repoURL: argoproj.github.io
+        repoURL: https://argoproj.github.io/argo-helm
         targetRevision: 2.40.5
         chart: argo-rollouts
       destination:
