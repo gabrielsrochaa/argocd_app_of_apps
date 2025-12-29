@@ -1,4 +1,3 @@
----
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -12,10 +11,10 @@ spec:
         matchLabels:
           env: dev
       values:
-        cluster_name: {{ .server }}
+        clusterName: '{{ .name }}'
   template:
     metadata:
-      name: 'argo-rollouts-{{ cluster_name }}'
+      name: 'argo-rollouts-{{ .values.clusterName }}'
     spec:
       project: "default"
       sources:
