@@ -17,18 +17,12 @@ spec:
       name: 'argo-rollouts-{{ .values.clusterName }}'
     spec:
       project: "default"
-      sources:
-      - repoURL: https://argoproj.github.io/argo-helm
+      source:
+        repoURL: argoproj.github.io
         targetRevision: 2.40.5
         chart: argo-rollouts
-        helm:
-          valueFiles:
-          - $values/charts/argo-rollouts/values.yaml
-      - repoURL: https://github.com/gabrielsrochaa/argocd_app_of_apps.git
-        targetRevision: main
-        ref: values
       destination:
-        server: {{ .url }}
+        server: '{{ .server }}'
         namespace: argo-rollouts
       syncPolicy:
         automated:
