@@ -7,17 +7,15 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-  # - clusters:
-  #     selector:
-  #       matchLabels:
-  #         env: dev
-  - list:
-      elements:
-      - cluster: dev
-        url: https://kubernetes.default.svc
+  - clusters:
+      selector:
+        matchLabels:
+          env: dev
+      values:
+        cluster_name: {{ .server }}
   template:
     metadata:
-      name: 'argo-rollouts'
+      name: 'argo-rollouts-{{ cluster_name }}'
     spec:
       project: "default"
       sources:
