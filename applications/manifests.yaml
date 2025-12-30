@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: manifests
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          env: dev
+      values:
+        clusterName: '{{ .name }}'
+  template:
+    metadata:
+      name: 'manifests-{{ .values.clusterName }}'
+    spec:
+      project: "default"
+      source:
+        repoURL: https://github.com/gabrielsrochaa/argocd_app_of_apps.git
+        targetRevision: main
+        path: manifests
+      destination:
+        server: '{{ .server }}'
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
