@@ -1,35 +1,35 @@
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: metallb
-spec:
-  goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
-  generators:
-  - clusters:
-      selector:
-        matchLabels:
-          env: dev
-      values:
-        clusterName: '{{ .name }}'
-  template:
-    metadata:
-      name: 'metallb-{{ .values.clusterName }}'
-    spec:
-      project: "default"
-      source:
-        repoURL: https://metallb.github.io/metallb
-        targetRevision: 0.15.3
-        chart: metallb
-        # - repoURL: https://github.com/gabrielsrochaa/argocd_app_of_apps.git
-        #   targetRevision: main
-        #   ref: values
-      destination:
-        server: '{{ .server }}'
-        namespace: metallb-system
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        syncOptions:
-          - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: metallb
+# spec:
+#   goTemplate: true
+#   goTemplateOptions: ["missingkey=error"]
+#   generators:
+#   - clusters:
+#       selector:
+#         matchLabels:
+#           env: dev
+#       values:
+#         clusterName: '{{ .name }}'
+#   template:
+#     metadata:
+#       name: 'metallb-{{ .values.clusterName }}'
+#     spec:
+#       project: "default"
+#       source:
+#         repoURL: https://metallb.github.io/metallb
+#         targetRevision: 0.15.3
+#         chart: metallb
+#         # - repoURL: https://github.com/gabrielsrochaa/argocd_app_of_apps.git
+#         #   targetRevision: main
+#         #   ref: values
+#       destination:
+#         server: '{{ .server }}'
+#         namespace: metallb-system
+#       syncPolicy:
+#         automated:
+#           prune: true
+#           selfHeal: true
+#         syncOptions:
+#           - CreateNamespace=true
